@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Unit tests
+*.test
+*.txt
+
+# Documentation output
+Documentation/html
+Documentation/latex
