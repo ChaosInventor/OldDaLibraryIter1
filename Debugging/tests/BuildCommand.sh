@@ -1,0 +1,1 @@
+g++ -g -Wall -Wextra -Og -std=c++17 -DDEBUG -o DebuggingTests.test ../Debugging.cpp DebuggingTests.cpp 

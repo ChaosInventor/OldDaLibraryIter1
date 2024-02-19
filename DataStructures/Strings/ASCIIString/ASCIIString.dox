@@ -1,0 +1,20 @@
+/** @file ASCIIString.dox
+ * 
+ * @brief Documents the @ref ASCIIStringMod module.
+ * 
+ */
+
+/** @defgroup ASCIIStringMod ASCIIString
+ * @ingroup StringsMod
+ * 
+ * @brief A module that can be used to manipulate ASCII text.
+ * 
+ * @details
+ * 
+ */
+
+/** @dir ASCIIString/
+ * @brief Contains files and directories related to the @ref ASCIIStringMod
+ * module
+ * 
+ */

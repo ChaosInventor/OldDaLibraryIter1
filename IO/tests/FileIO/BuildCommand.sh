@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -DDEBUG -std=c++17 ../../../LibraryMeta/LibraryMeta.cpp ../../../Debugging/Logging/Log.cpp ../../source/platform_specific/FileIOLinux.cpp -g -Og -o FileIOTests.test *.cpp

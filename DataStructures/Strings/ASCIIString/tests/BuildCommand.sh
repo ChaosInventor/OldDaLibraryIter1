@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -std=c++17 -o ASCIIStringTests.test -g -Og -DDEBUG ../ASCIIString.cpp ../../../../IO/source/IO.cpp ../../../../LibraryMeta/LibraryMeta.cpp ../../../../Debugging/Debugging.cpp ../../../../Debugging/Logging/Log.cpp *.cpp

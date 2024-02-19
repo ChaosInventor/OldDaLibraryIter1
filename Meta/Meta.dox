@@ -1,0 +1,76 @@
+/** @file Meta.dox
+ * @brief Documents the @ref MetaMod module.
+ * 
+ */
+
+/** @defgroup MetaMod Meta
+ * @ingroup LibraryMod
+ * 
+ * @brief The configuration module of the library. Defines contants and
+ * fundamental types.
+ * 
+ * @details
+ * @section MetaModPurpose Purpose
+ * This module is meant to act as a configuration header for the library.
+ * 
+ * 
+ * @section MetaModUses Uses
+ * This module defines many references, pointers and types. You are supposed to
+ * you these definitions anywhere and everywhere.
+ * 
+ * 
+ * @section MetaModUsing Using
+ * To use this module **include the** @ref Meta.hpp **file**. Then link to
+ * @ref Meta.cpp. Details on using the definitions in this module can be found
+ * in each definition's documentation.
+ * 
+ * @warning **DO NOT MUTATE ANY OF THE VALUES IN THIS MODULE.** You can
+ * overwrite them during compilation using macros.
+ * 
+ * 
+ * @section MetaModOrganization Organization
+ * Everything that is defined by this module can be found directly under the
+ * Library:: namespace. All declarations are in @ref Meta.hpp and all
+ * definitions are in @ref Meta.cpp.
+ * 
+ * 
+ * @section MetaModDependencies Dependencies
+ * This module dose not have any dependencies other than the C standard library.
+ * 
+ * 
+ * @section MetaModBuilding Building
+ * //TODO: Build instructions.
+ * 
+ * @subsection MetaModBuildMacros Build macros
+ * - ADDITIONAL_INCLUDE - This macro causes the Meta.cpp file to include the
+ * value of the macro itself(\#include ADDITIONAL_INCLUDE).
+ * 
+ * - Macros for overwriting allocation defaults:
+ *      - OVERWRITE_DEFAULT_ALLOCATOR - If this macro is defined, the value of
+ *      @ref Library::g_DEFAULT_ALLOCATOR is set to this macro.
+ *      
+ *      - OVERWRITE_DEFAULT_ALLOC_ERROR - If this macro is defined, the value of
+ *      @ref Library::g_DEFAULT_ALLOC_ERROR is set to this macro.
+ *      
+ *      - OVERWRITE_DEFAULT_ALLOC_ERROR_DATA - If this macro is defined, the
+ *      value of @ref Library::g_DEFAULT_ALLOC_ERROR_DATA is set to this macro.
+ * 
+ * - Macros for overwriting reallocation defaults:
+ *      - OVERWRITE_DEFAULT_REALLOCATOR - If this macro is defined, the value of
+ *      @ref Library::g_DEFAULT_REALLOCATOR is set to this macro.
+ *      
+ *      - OVERWRITE_DEFAULT_REALLOC_ERROR - If this macro is defined, the value of
+ *      @ref Library::g_DEFAULT_REALLOC_ERROR is set to this macro.
+ *      
+ *      - OVERWRITE_DEFAULT_REALLOC_ERROR_DATA - If this macro is defined, the
+ *      value of @ref Library::g_DEFAULT_REALLOC_ERROR_DATA is set to this macro.
+ * 
+ * - OVERWRITE_DEFAULT_DEALLOCTOR - If this macro is defined the value of
+ * @ref Library::g_DEFAULT_DEALLOCATOR is set to this macro.
+ * 
+ */
+
+/** @dir Meta/
+ * @brief Contains the @ref MetaMod module.
+ * 
+ */

@@ -1,0 +1,107 @@
+/** @file FunctionNaming.dox
+ * @brief PLACE HOLER //TODO: Move this else where and organize it accordingly
+ * 
+ */
+
+//TODO: Make this scimmable with bold and colors.
+/** @page FunctionNaming Naming functions
+ * @brief PLACE HOLDER
+ * 
+ * @details Functions in the library must follow a systematic naming scheme.
+ * This naming scheme aims to improve readability by:
+ * - making functions self documenting.
+ * - showing what arguments go into a function.
+ * - showing how arguments are used.
+ * 
+ * In a nutshell, this naming scheme works by:
+ * - specifing what the function does.
+ * - writing what arguments are used, in order they appear in the function's
+ * argument list.
+ * - writing how the arguments are used, in order they appear in the function's
+ * argument list.
+ * 
+ * The rest of this documentation will go in detail on how naming works and what
+ * information it conveys. **You should not read this entire documentation**,
+ * use it as a reference when need it.
+ * 
+ * @section FunctionNamingPointersAndReferences Function pointers and references
+ * Function pointers and references are also affected by these rules. Every
+ * single rule here applies exepct for the spelling.
+ * 
+ * **Function pointers and references must use variable naming.** //TODO: Link to variable naming rules
+ * 
+ * 
+ * @section FunctionNamingSpelling Spelling
+ * First off, how functions are spelled. FunctionsAreSpelledInPascalCase. (//TODO: Link to pascal case).
+ * They must begin on a letter, no underscores at the begining. The rest of the
+ * function name should be mainly comprised of letters. Numbers are ok but
+ * should be minimized in occurrence. Underscores should only be used in special
+ * cases.
+ * 
+ * The only exception to this are @ref FunctionNamingPointersAndReferences
+ * "function pointers and references"
+ * 
+ * 
+ * @section FunctionNamingNameForm Form of the function names
+ * //TODO: Elaborate on name forms.
+ * The form of a function's name depens on what it does and how. Bellow is a
+ * list of name forms that a function can have. Here you will only find brief
+ * descriptions of each one, further details can be on each name forms'
+ * sub-section:
+ * - Commands, in these functions you command some thing to be done, for example
+ * create or find something.
+ * 
+ * - Statements, in these functions you make a statement that may be true or
+ * false, these functions then tell you whether that statement is true or false.
+ * 
+ * - Callbacks, these functions are call when some thing happens. Yes, they have
+ * a separate name form.
+ * 
+ * - Memory management functions, allocators, deallocators and reallocator, they
+ * all have a separate name form. This name form is fairly simple.
+ * 
+ * - Error handlers.
+ * //TODO: Add more function types here, surely more will arise with time.
+ * 
+ * 
+ * @subsection FunctionNamingCommands Commands
+ * Command functions take the following form:
+ * 
+ * **\<Action\>\<ArgumentList\>[_Elaboration]**
+ * 
+ * Each field is documented in detail bellow.
+ * 
+ * @subsubsection FunctionNamingCommandsAction
+ * This part of the function tells you what it does(duh). Actions may determen
+ * what the function returns.
+ * 
+ * The words that can appear in this field are endless, however there is a list
+ * of very commonly used ones.
+ * @note In addition to this list a module may define its own actions that are
+ * used in it. For such cases documentation for the new actions can be found
+ * on the module's page in the {//TODO: What section} section
+ * 
+ *  
+ * - Allocate
+ * - Deallocate
+ * - Create
+ * - Destroy
+ * - Get
+ * - Set
+ * - Insert
+ * - Extract
+ * - Write
+ * - Read
+ * - Add
+ * - Remove
+ * - Re\<X\>
+ * - Increase\<X\>/Inc\<X\>
+ * - Decrease\<X\>/Dec\<X\>
+ * - Find
+ * 
+ * 
+ * 
+ * @section FunctionNamingInsertWriteAdd Insert, write and add
+ * //TODO: Makes new stuff, overwrites and combines.
+ * 
+ */

@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -g -Og -std=c++17 -DDEBUG -o ListTests.test ../../../../../../Debugging/Logging/Log.cpp ../../../../../../Debugging/Debugging.cpp ../../../../../../Meta/Meta.cpp *.cpp

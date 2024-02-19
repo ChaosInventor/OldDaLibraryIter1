@@ -1,0 +1,128 @@
+/** @file Glue.dox
+ * @brief Documents the basics of glue modules and things related to them.
+ *
+ */
+
+/** @defgroup GlueMod Glue
+ * @brief A group of modules that "glue" together multiple other modules.
+ * 
+ * @details
+ * @section GlueModWhat What are glue modules
+ * Glue modules are modules that take 2 or more other modules and make
+ * them compatible with each other. For example @ref FileIOMod "the file IO 
+ * module" is a glue module that makes the file interface of @ref FileMod "the
+ * file module" compatible with the @ref IOMod "the IO module" interface.
+ * 
+ * 
+ * @section GlueModWhy Why do glue modules exist
+ * The main purposes of glue modules are:
+ * - to fully separate the functionality of each module,
+ * - to minimize the number of dependencies each module has,
+ * - to eliminate cyclic dependencies.
+ * 
+ * If it weren't for glue modules then @ref ArrayMod "the array module" would
+ * have to include @ref ListMod "the many list modules," or the
+ * many list modules would have to include the array module, all in order to
+ * define a bunch of conversion functions. Instead of deciding who is including
+ * who a new glue module is created with the sole purpose of providing a way to
+ * convert between them(@ref ArrayListConversion).
+ * 
+ * 
+ * @section GlueModHow How to create glue modules
+ * Any glue module must follow a set of rules for it organization, naming, files
+ * , ect:
+ * - All of the files(headers, sources, docs, tests, ect) belonging to a glue
+ * module must be places inside a directory with the same name as the glue
+ * module. This directory then has to be placed under the Glue/ directory.
+ * @note That directory then may have any number of sub directories and files.
+ * - All of the definitions of a glue module(functions, constants, structures,
+ * ect) must be placed under the Library::Glue namespace.
+ * @note A glue module may define any number of sub namespaces in Library::Glue
+ * and then put its definitions in there. (for example say a glue module defines
+ * a function called A() and a function called B(). It is perfectly valid for
+ * the glue module to place the A() function under the namespace
+ * Library::Glue::OwO and then place the B() function under the 
+ * Library::Glue::Sticky::Slimy::InstantDry namespace.)
+ * - The name of a glue module must be systematic, more info in @ref GlueModNaming
+ * - The glue module must glue together 2 or more other modules, these other
+ * modules may inturn be regular modules or other glue modules.
+ * @note There is no restriction on what modules can and cannot be glued
+ * together, the only requirement is that the resulting glue module provides
+ * some sort of useful functionality.
+ * 
+ * 
+ * @section GlueModNaming Naming glue modules
+ * Glue modules must follow a systematic naming scheme. This naming scheme
+ * largely dictates the name of the glue module based on the modules that are
+ * being glued together. Here is a step by step process for generating a glue
+ * module name:
+ * //TODO: Rather than providing a bunch of abstract pieces of information,
+ * //write a step by step guide to generation a glue module name.
+ * 
+ * -# Get a list of words, prefixes and suffixes form all of gluees:
+ *      - If a module defines what its resulting glue modules need to contain in
+ *      their name, then follow those requirements. Modules can only define to
+ *      have a prefix or a suffix OR a word (notice the "or" on all of them).
+ *      These sorts of requirements are usually documented on the modules page.
+ *      - If a module does NOT define what its resulting glue modules need to
+ *      contain in their name, then choose at last 1 word from the name of the
+ *      gluee. You may choose as many words as you wish, but you always have to
+ *      choose at least one.
+ * -# Optionally add at most 3 words or prefixes or suffixes that describe the
+ * function of the glue module. //TODO: Example with conversion glue modules.
+ * -# Sort the prefixes, suffixes and words in the following way:
+ *      - If the first letter of the prefix, suffix or word is a letter, sort
+ *      it alphabetically. Prefixes, suffixes and words that begin on a letter
+ *      have the highest priority(they must appear first).
+ *      - If the first letter of the prefix, suffix or word is a number, sort
+ *      it numerically(smallest numbers come first, smallest numbers come last).
+ *      The first letter must not be the only thing that is considered the
+ *      number, every other letter must also be taken into consideration, until
+ *      the first non number letter, starting from the beginning of the word(for
+ *      example 43837guGuGaGa456 has the number 43837). Prefixes, suffixes and
+ *      words that begin on a letter have a medium priority(they must appear
+ *      in the middle).
+ *      - If the first letter of the prefix, suffix or word is a not a letter or
+ *      number, then sort it by the numberical value of the character itself
+ *      (a character with a smaller value comes first, while a bigger value
+ *      comes last). Prefixes, suffixes and words that begin on a non letter or
+ *      non number have the lowest priority(they must appear last).
+ * -# Concatenate all of the prefixes, suffixes and words:
+ *      -# Concatenate the sorted prefixes, the second prefix is concatenated to
+ *      the end of the first prefix, the third to the end of the second ect...
+ *      -# Concatenate the sorted words, in the same manner as the prefixes.
+ *      -# Concatenate the sorted suffixes, in the same manner as the prefixes.
+ * -# Finally concatenate the words to the end of the prefixes and concatenate
+ * the suffixes to the end of the result of the previous conatenation. You now
+ * have a complete glue module name.
+ * 
+ * //TODO: Example of the naming system
+ * 
+ * 
+ * @section GlueModTerms Terminology
+ * - Resulting glue module - the glue module that would be created if some
+ * modules are glued together / refers to a glue module that glues some other
+ * specific module.
+ * - Gluing modules together - refers to creating a glue module from a
+ * collection of other modules.
+ * - Gluee / Gluees - a module/modules that are apart of a glue module. For
+ * example @ref IOMod "the IO module" is a gluee of @ref FileIO "the file IO 
+ * module".
+ * 
+ * //TODO: Building section.
+ * 
+ * //TODO: See also section on some of the most useful glue modules.
+ *
+ */
+
+/** @dir Glue/
+ * @brief You'll find everything related to @ref GlueMod "glue modules" under
+ * this directory.
+ * 
+ */
+
+/** @namespace Library::Glue
+ * @brief You'll find all of the things that are defined in @ref GlueMod
+ * "glue modules" under this namespace.
+ * 
+ */

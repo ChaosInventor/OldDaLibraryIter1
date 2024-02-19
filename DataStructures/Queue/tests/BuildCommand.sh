@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -DDEBUG -std=c++17 ../../../LibraryMeta/LibraryMeta.cpp ../../../IO/IO.cpp ../../../Debugging/Debugging.cpp ../../../Debugging/Logging/Log.cpp -g -Og -o QueueTests.test *.cpp

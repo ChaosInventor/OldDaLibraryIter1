@@ -1,0 +1,307 @@
+/** @file Array.dox
+ * @brief Documents the @ref ArrayMod module.
+ *
+ */
+
+/** @dir Array/
+ * @brief The files related to the @ref ArrayMod module can be found here.
+ *
+ */
+
+
+/** @defgroup ArrayMod Array
+ * @ingroup DataStructuresMod
+ *
+ * @brief Defines the array data structure.
+ *
+ * This module contains the @ref Library::DataStructures::Array::Array "Array"
+ * data structure and functions that can be used with it.
+ *
+ *
+ * @section ArrayModPurpose Purpose
+ * You can use the array data structure and its associated functions to
+ * manipulate and use a continuous dynamically sized chunk of memory. This chunk
+ * of memory is a series of objects of any type.
+ *
+ *
+ * @section ArrayModUses Uses
+ * - Read from and write to each item in the array.
+ * - Add and remove items from the array.
+ * - Find items, count items, check if an array contains items ect.
+ * - Resize the array's buffer.
+ * - Read from and write to a stream (See the @ref IOMod module on more details
+ * on streams).
+ * 
+ * For details on which functions do all of this see
+ * @ref Library::DataStructures::Array.
+
+ *  
+ * @section ArrayModUsing Using
+ * In order to use this module include the @ref Array.hpp file. The path of this
+ * file is ./DataStructures/Array/Array.hpp, where . is the root directory of
+ * the library repository.
+ * 
+ * @subsection ArrayModUsingExample Example
+ * Here we'll go over an impractical example of using the array data structure,
+ * this example is not meant to be realist, but instead to showcase as many
+ * features of the array module as possible.
+ * 
+ * We'll implement the following algorithm:
+ * -# Take in a positive number and generate that many random numbers.
+ * -# Multiply every odd numbered index by 3.
+ * -# Add 1 more random number after each even numbered index.
+ * -# Sum up all of the numbers and return them.
+ * The type used to represent the numbers should be int. In case of any failure
+ * return 0.
+ * 
+ * We'll implement this algorithm as a single function with the following
+ * signature:
+ * @code{.cpp}
+ * int randoSum(unsigned int p_number_of_rands);
+ * @endcode
+ * For the random number generation we'll use the c standard function rand, so
+ * we'll need to include stdlib:
+ * @code{.cpp}
+ * #include <stdlib.h>
+ * @endcode
+ * We'll also need the array data structure. To get it we just need to include
+ * the Array.hpp file. For this example we'll assume that Array.hpp is somewhere
+ * in our include path. For convenience we'll also pull all of the symbols form
+ * the array namespace:
+ * @code{.cpp}
+ * #include <Array.hpp>
+ * 
+ * using namespace Library::DataStructures::Array;
+ * @endcode
+ * So far we have the following code:
+ * @code{.cpp}
+ * #include <stdlib.h>
+ * #include <Array.hpp>
+ * 
+ * using namespace Library::DataStructures::Array;
+ * 
+ * int randoSum(unsigned int p_number_of_rands);
+ * @endcode
+ * Now onto the first step of this simply AMAZING algorithm: "Take in a positive
+ * number and generate that many random numbers". We'll complete this step by
+ * creating an array that can store as many numbers as needed, then we'll
+ * iterate through each item in the array and we'll store the result of rand
+ * there. There are also multiple edge cases that will be explained in the code.
+ * Finally we'll use the default allocator, reallocator and related callbacks.
+ * @code{.cpp}
+ * //Can't really do anything in this case.
+ * if(p_number_of_rands == 0)
+ * {
+ *     //"In case of any failures return 0" - the incredible spec UwU.
+ *     return 0;
+ * }
+ *
+ * //This is our array
+ * Array<int> l_array;
+ *
+ * //Makes an array that can hold p_number_of_rands ints.
+ * CreateArrayAtOfCapacityUsingAllocator(l_array, p_number_of_rands);
+ * //There is a lot happening in this one line. First l_array is being
+ * //implicitly converted to an int*, the value of this int* is the array's
+ * //buffer which is the memory region that the array uses to store it's items.
+ * //You can also access the buffer directly by doing l_array.m_Buffer.
+ * //
+ * //Next we are comparing the array's buffer with null since if the above
+ * //creation function fails due to allocation failure the array's buffer will
+ * //be set to 0.
+ * if(l_array == nullptr)
+ * {
+ *     //"In case of any failures return 0" - the incredible spec UwU.
+ *     return 0;
+ * }
+ *
+ * //Just your normal for loop.
+ * for(Size i = 0; i < p_number_of_rands; ++i)
+ * {
+ *    //Here we're calling the array's overloaded [] operator. This is
+ *    //equivalent to doing l_array.m_Buffer[i].
+ *    l_array[i] = rand();
+ * }
+ * 
+ * //Ok so the array has 2 numbers: m_Size and m_Capacity.
+ * //m_Capacity tells us how many items the array CAN store MAX.
+ * //m_Size tells us how many items the array IS storing CURRENTLY.
+ * //
+ * //This can be useful for addition and removal, instead of always doing a 
+ * //reallocation we change m_Size.
+ * //
+ * //Since we manually added items with the above loop we'll need to update
+ * //the size. The size by default is 0.
+ * l_array.m_Size = p_number_of_rands;
+ * @endcode
+ * Onto the second step, "Multiply every odd numbered index by 3". This can be
+ * done by a single for loop:
+ * @code{.cpp}
+ * //Odd + even = odd
+ * for(Size i = 1; i < p_number_of_rands; i += 2)
+ * {
+ *      l_array[i] *= 3;   
+ * }
+ * @endcode
+ * Onto the third step: "Add 1 more random number after each even numbered index
+ * ". We'll achieve this with a loop and the
+ * @ref AddArrayToArrayAfterIndexUsingReallocator function.
+ * @code{.cpp}
+ * //Even + even = even
+ * for(Size i = 0; i < p_number_of_rands; i += 2)
+ * {
+ *     AddArrayToArrayAfterIndexUsingReallocator<int>(
+ *         rand(), //The array we're adding FROM. Wait a minute this isn't an
+ *         //array! Thats right, you can create a temporary array from a single
+ *         //item. This temporary array has its buffer set to the memory
+ *         //address of the item and its m_Size and m_Capacity to 1. Note:
+ *         //In function calls such as this you must specify the type. You
+ *         //can see this here, int is specified in the angle brackets. If you
+ *         //don't do this your compiler will get confused and refuse to
+ *         //compile your source code.
+ *         l_array, //The array we're adding TO.
+ *         i, nullptr, nullptr //The index and callbacks.
+ *     );
+ * }
+ * @endcode
+ * And finally the last step: "Sum up all of the numbers and return them".
+ * Another step another loop, sigh. HOLD IT RIGHT THERE!!! After we've computed
+ * the result we must release all of the dynamic memory from the array or we'll
+ * have a leaky weaky. The @ref DestroyArrayUsingAllocator function should
+ * be enough.
+ * @code{.cpp}
+ * int l_result = 0;
+ * //Since we added items in the last step the p_number_of_rands number no
+ * //longer represents the actual number of items in the array. Now we must use
+ * //th array's size. We cannot use the array's capacity since the add function
+ * //might of allocated more memory than necessary.
+ * for(Size i = 0; i < l_array.m_Size; ++i)
+ * {
+ *     l_result += l_array[i];
+ * }
+ * 
+ * //Remember, data structures in the library don't manage their own resources!
+ * DestroyArrayUsingDeallocator(l_array);
+ * return l_result;
+ * @endcode
+ * And just like that we've implemented the one and only ultra amazing and awe
+ * inducing randoSum algorithm!!!111!1!!!!!
+ * 
+ * //TODO: Maybe link to the file instead?
+ * Here is the full code: 
+ * @code{.cpp}
+ * #include <stdlib.h>
+ * #include <Array.hpp>
+ * 
+ * using namespace Library::DataStructures::Array;
+ * 
+ * int randoSum(unsigned int p_number_of_rands)
+ * {
+ * 
+ *     //Can't really do anything in this case.
+ *     if(p_number_of_rands == 0)
+ *     {
+ *         //"In case of any failures return 0" - the incredible spec UwU.
+ *         return 0;
+ *     }
+ * 
+ *     //This is our array
+ *     Array<int> l_array;
+ * 
+ *     //Makes an array that can hold p_number_of_rands ints.
+ *     CreateArrayAtOfCapacityUsingAllocator(l_array, p_number_of_rands);
+ *     //There is a lot happening in this one line. First l_array is being
+ *     //implicitly converted to an int*, the value of this int* is the array's
+ *     //buffer which is the memory region that the array uses to store it's items.
+ *     //You can also access the buffer directly by doing l_array.m_Buffer.
+ *     //
+ *     //Next we are comparing the array's buffer with null since if the above
+ *     //creation function fails due to allocation failure the array's buffer will
+ *     //be set to 0.
+ *     if(l_array == nullptr)
+ *     {
+ *         //"In case of any failures return 0" - the incredible spec UwU.
+ *         return 0;
+ *     }
+ * 
+ *     //Just your normal for loop.
+ *     for(Size i = 0; i < p_number_of_rands; ++i)
+ *     {
+ *         //Here we're calling the array's overloaded [] operator. This is
+ *         //equivalent to doing l_array.m_Buffer[i].
+ *         l_array[i] = rand();
+ *     }
+ * 
+ *     //Ok so the array has 2 numbers: m_Size and m_Capacity.
+ *     //m_Capacity tells us how many items the array CAN store MAX.
+ *     //m_Size tells us how many items the array IS storing CURRENTLY.
+ *     //
+ *     //This can be useful for addition and removal, instead of always doing a 
+ *     //reallocation we change m_Size.
+ *     //
+ *     //Since we manually added items with the above loop we'll need to update
+ *     //the size. The size by default is 0.
+ *     l_array.m_Size = p_number_of_rands;
+ * 
+ *     //Odd + even = odd
+ *     for(Size i = 1; i < p_number_of_rands; i += 2)
+ *     {
+ *         l_array[i] *= 3;   
+ *     }
+ * 
+ *     //Even + even = even
+ *     for(Size i = 0; i < p_number_of_rands; i += 2)
+ *     {
+ *         AddArrayToArrayAfterIndexUsingReallocator<int>(
+ *             rand(), //The array we're adding FROM. Wait a minute this isn't an
+ *             //array! Thats right, you can create a temporary array from a single
+ *             //item. This temporary array has its buffer set to the memory
+ *             //address of the item and its m_Size and m_Capacity to 1. Note:
+ *             //In function calls such as this you must specify the type. You
+ *             //can see this here, int is specified in the angle brackets. If you
+ *             //don't do this your compiler will get confused and refuse to
+ *             //compile your source code.
+ *             l_array, //The array we're adding TO.
+ *             i, nullptr, nullptr //The index and callbacks.
+ *         );
+ *     }
+ * 
+ *     int l_result = 0;
+ *     //Since we added items in the last step the p_number_of_rands number no
+ *     //longer represents the actual number of items in the array. Now we must use
+ *     //th array's size. We cannot use the array's capacity since the add function
+ *     //might of allocated more memory than necessary.
+ *     for(Size i = 0; i < l_array.m_Size; ++i)
+ *     {
+ *         l_result += l_array[i];
+ *     }
+ * 
+ *     //Remember, data structures in the library don't manage their own resources!
+ *     DestroyArrayUsingDeallocator(l_array);
+ *     return l_result;
+ * 
+ * }
+ * @endcode
+ * 
+ * 
+ * @section ArrayModOrganization Organization
+ * All structures and functions in this module can be found under the
+ * @ref Library::DataStructures::Array namespace. In this namespace you'll find
+ * all of the functions necessary to use the array data structure as well as the
+ * array data structure itself.
+ *
+ *
+ * @section ArrayModDeps Dependencies
+ * This module depends on the following modules from the library:
+ * - @ref LibraryMetaMod
+ * - @ref IOMod
+ * - @ref DebuggingMod, this module is only needed for debugging, otherwise it
+ * is unneeded.
+ *
+ *
+ * @section ArrayModBuilding Building
+ * This module is header only, you do not need to build it. Include Array.hpp
+ * and you'll have access to the entire module.
+ *
+ */
+

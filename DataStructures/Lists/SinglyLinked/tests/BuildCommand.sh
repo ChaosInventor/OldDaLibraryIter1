@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -g -Og -std=c++17 -DDEBUG -o NodeTests.test ../../../../Meta/Meta.cpp ../../../../Debugging/Debugging.cpp ../../../../Debugging/Logging/Log.cpp *.cpp

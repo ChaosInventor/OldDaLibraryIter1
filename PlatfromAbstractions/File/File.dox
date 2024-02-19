@@ -1,0 +1,91 @@
+/** @file File.dox
+ * @brief Documents the @ref FileMod module
+ * 
+ */
+
+/** @defgroup FileMod File
+ * @brief An abstraction over the platfrom's file system.
+ * 
+ * @details Files are a way to permanently store some piece of binray data. Data
+ * written onto a file will stay in said file even after program
+ * termination, making files the idea mechanism for persistant data storage.
+ * The only way to get rid of data written to a file is to explicitly issue a
+ * delete command for that file. Mutiple proccess may have the same file open
+ * and they all may read and write from it as they please.
+ * 
+ * 
+ * @section FileModPurpose Purpose
+ * This module aims to provide an abstraction over the target platfrom's file
+ * system.
+ * 
+ * 
+ * @section FileModUses Uses
+ * This module can be used to:
+ * - Create and delete files.
+ * - Read and write to files.
+ * - Seek in files.
+ * - Handle file errors.
+ * 
+ * 
+ * @section FileModUsing Using
+ * In order to use this module you must:
+ * -# Allocate a file handle. This handle is an opaque structure that holds all
+ * of the data necessary for managing a file on the target platfrom.
+ * @ref Library::PlatfromAbtractions::File::File "See the the file structure for
+ * more details." and @ref Library::PlatfromAbtractions::File::AllocateFileHandleUsingAllocator
+ * "the function used for allocating file handles".
+ * -# Either open an existant file or create a new one. Files may be open in 1
+ * of 3 ways:
+ *      - Read mode, in this mode you can only read from the file and cannot
+ *      write to it.
+ *      - Write mode, in this mode you can only write to the file and cannot
+ *      read from it.
+ *      - Read write mode, in this mode you can both read and write to the file.
+ * Depending on multiple conditions, the opening and closing of files can either
+ * fail or succeed. //TODO: Link to section on opening and creating files.
+ * -# After the above 2 steps are done you can now begin using the file. You can
+ * use @ref Library::PlatfromAbtractions::File::ReadBytesFromFileHandle
+ * "this function for reading from a file" and
+ * @ref Library::PlatfromAbtractions::File::ReadBytesFromFileHandle
+ * "this function for writing to a file". You also need to be aware of the fact
+ * that reading and writing may fail for various reasons //TODO: Link to section about reading and writing errors.
+ * -# If you are now done with the file, you must close it using
+ * @ref Library::PlatfromAbtractions::File::CloseFileHandle
+ * "the CloseFileHandle function". If a file is not closed then file resources
+ * will be leaked, which might prevent you from opening more files.
+ * -# Once you close the file, the same file handle may be reused for opening
+ * other files. If you do not intend to use the file handle you must deallocate
+ * it using
+ * @ref Library::PlatfromAbtractions::File::DeallocateFileHandleUsingDeallocator
+ * "the file handle deallocation function". If you do not deallocate a file
+ * handle then there will be a memory leak. If you deallocate a file handle
+ * without first closing the file, file resources will be leaked.
+ * 
+ * For other ways of using files have a look at
+ * @ref Library::PlatfromAbtractions::File "the namespace of this module" for a
+ * list of functions and what they do.
+ * 
+ * You could also use @ref FileIOMod "files with the stream interface".
+ * 
+ * 
+ * @section FileModOrganization Organization
+ * //TODO: Add section on the organization of the file module.
+ * 
+ * 
+ * @section FileModDependencies Dependencies
+ * - @ref MetaMod
+ * - @ref DebuggingMod, this module is only used if DEBUG is defined.
+ * 
+ * 
+ * @section FileModBuilding Building
+ * //TODO: Add section on building in the file module.
+ * 
+ * 
+ * @sa FileIOMod BufferIOMod ASCII_IOMod
+ * 
+ */
+
+/** @dir File/
+ * @brief Contains all of the files associated with the @ref FileMod module
+ * 
+ */

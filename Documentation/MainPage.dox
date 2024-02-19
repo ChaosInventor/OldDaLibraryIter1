@@ -1,0 +1,80 @@
+/** @file MainPage.dox
+ * 
+ * @brief The main page is generated from this file.
+ * 
+ */
+
+/** @dir Documentation/
+ * 
+ * @brief Contains the documentation and files related to it.
+ * 
+ */
+
+/** @namespace Library
+ * @brief The main namespace under which everthing in the library is defined.
+ * 
+ */
+
+/** @mainpage
+ *
+ * The library is a general purpose library for C++ that defines data structures
+ * and platfrom abstractions. It has no dependencies other than the C standard
+ * library. //TODO: The dependence part is no longer true...
+ * 
+ * @section MainScoped Scope of this documentation
+ * This documentation aims to fully document each and every feature of the
+ * library as well as to explain the rationality behind its design.
+ * 
+ * This documentation is NOT aimed at beginners.
+ * 
+ * @subsection MainPrerequisites Prerequisites for this documentation
+ * You are expected to have a good understanding of the C++ programming language
+ * as well as most programming concepts. You are also expected to be able to
+ * use a command line to build C++ projects.
+ * 
+ *
+ * //TODO: Covert the desing of the library.
+ * 
+ *  
+ * @section MainOrganization Organization of the library
+ * //TODO: Separate this section into a sub section about module organization and
+ * file organization.
+ * 
+ * The library is organized in multiple modules that all define and do one thing.
+ * For example there is an @ref ArrayMod module that defines an array data
+ * structure, an @ref IOMod module that makes an IO abstraction and so on.
+ * 
+ * To see a list of all of the modules please use the Modules button on the top
+ * of the page.
+ * 
+ * Each module only needs its dependencies to be used. It does not require the
+ * whole library. 
+ * 
+ * Each module only depends on either the C standard library or on other modules
+ * in the library. Depending on how complex the module is, it may depend on 1 or
+ * 2 other modules or a lot more.
+ * 
+ * 
+ * @section MainCodingStyle Programing style of the library
+ * The library is NOT written in a traditional C++ object oriented style. It has
+ * its own weird programming style that is mixture of a traditional C
+ * programming style and a traditional C++ programming style. For more details
+ * on the programming style see: //TODO: Add link and mak page, ect.
+ * 
+ * //TODO: Cover the layout of the documentation.
+ * 
+ * @section MainUsing Using the library
+ * If you would like to use the library then you need to build each module that
+ * you plan on using or alternatively build the entire library.
+ * 
+ * Each module has build instructions on its page.
+ * 
+ * For building the entire library see: //TODO: Link
+ * 
+ * @section MainContributing Contributing to the library
+ * If you are interested in contributing to the library please see the
+ * contributing guide. //TODO: Link
+ * 
+ * //TODO: Conver licence
+ * 
+ */

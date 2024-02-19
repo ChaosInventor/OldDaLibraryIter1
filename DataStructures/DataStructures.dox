@@ -1,0 +1,44 @@
+/** @file DataStructures.dox
+ * @brief Documents the @ref DataStructuresMod module group.
+ * 
+ */
+
+//TODO: This documentation feels wrong...
+/** @defgroup DataStructuresMod Data structures
+ * @brief A group of modules that define some sort of structure that can hold
+ * data.
+ * 
+ * @details This group of modules is rather abstract and not so well defined. A
+ * data structure is a structure that can be used to hold some type of data.
+ * This type of data can be anything.
+ * 
+ * Usually modules in this group are templates to allow for any data to be
+ * stored, but this is not a rule, a data structure does not have to be a
+ * template.
+ * 
+ * Any modules in this group must be under the DataStructures/ directory. It
+ * must be in its separate folder. The folder itself can contain any number of
+ * sub folders and files.
+ * 
+ * Any modules in this group must also be under the Library::DataStructures 
+ * namespace. The module may define any number of namespaces that are under the
+ * Library::DataStructures namespace (for example:
+ * Library::DataStructures::Example01::EggsDee::UwU::Example02 is a valid
+ * namespace for a module in this group.)
+ * 
+ * @section DataStructuresModBuilding Building
+ * //TODO: This can only realistically be done once SBS can be used.
+ * 
+ */
+
+/** @dir DataStructures/
+ * @brief You will find everything related to the @ref DataStructuresMod module
+ * group under this directory.
+ * 
+ */
+
+/** @namespace Library::DataStructures
+ * @brief Contains all of the things in the @ref DataStructuresMod
+ * module group.
+ * 
+ */

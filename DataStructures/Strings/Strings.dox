@@ -1,0 +1,19 @@
+/** @file Strings.dox
+ * 
+ * @brief Documents the strings directory and module.
+ * 
+ */
+
+/** @defgroup StringsMod Strings
+ * @ingroup DataStructuresMod
+ * 
+ * @brief A group of modules that handle strings.
+ * 
+ * @details //TODO:
+ * 
+ */
+
+/** @dir Strings/
+ * @brief Contains things related to string modules.
+ * 
+ */

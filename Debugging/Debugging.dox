@@ -1,0 +1,110 @@
+/** @defgroup DebuggingMod Debugging
+ *
+ * @brief This module can be used to debug and test the library itself
+ *
+ * This module is used for debugging and testing the library it's self.
+ *
+ *
+ * @section DebuggingModPurpose Purpose
+ * You should use this module for testing and debugging the library. The module
+ * is not made to be used in production.
+ *
+ *
+ * @section DebuggingModOrganization Organization
+ * Everything in this module is defined under the @ref Debugging namespace. The
+ * debugging namespace is purposefully not placed under the Library namespace
+ * since this module is not meant to be used outside of unit tests in the
+ * library itself.
+ *
+ * @subsection DebuggingModFiles Files
+ * Currently the debugging module is made up of 4 files. These files can be
+ * split into 2 groups:
+ * - Files that help in testing:
+ *  - @ref Debugging.hpp for the declarations. You want to include this file if
+ *  you want to use the testing functions.
+ *  - @ref Debugging.cpp for the definitions. You want to link with this file if
+ *  you include the accompanying header.
+ * - Files that help in logging:
+ *  - @ref Log.hpp for all of the declarations. You want to include this file
+ *  and define the DEBUG macro in order to log data to stderr.
+ *  - @ref Log.cpp for all of the definitions. You want to link with this file
+ *  only if you have included Log.hpp and have defined the DEBUG macro. There is
+ *  no need to link to this file if the DEBUG macro is not defined.
+ *
+ *
+ * @section DebuggingModUses Uses
+ * This module can be used to test if a given function properly behaves in the
+ * case where some external resource like memory is unavailable. The module
+ * achieves this by declaring functions that can:
+ * - Simulate an allocation failure.
+ * - Simulate a reallocation failure.
+ * - Check if a callback was called.
+ *
+ * Additionally you can also use the primitive logging system to log what your
+ * functions are doing and how they are doing it.
+ *
+ * Check the namespace, @ref Debugging, for more details.
+ *
+ *
+ * @section DebuggingModDeps Dependencies
+ * This module dose not depend on any other module in the library.
+ *
+ * The helper function part of this module requires that Size is defined for
+ * it's declaration, while the implementation requires that malloc and realloc
+ * are defined. These dependencies are resolved by including stdlib.h.
+ *
+ * The logging system part of this module does not have any dependencies for
+ * it's declaration, however for it's current implementation it requires
+ * different functions and types from stdio.h. The dependencies are resolved by
+ * including stdio.h in Log.cpp, Log.hpp does not include anything.
+ *
+ *
+ * @section DebuggingModBuilding Building
+ * Since this module is made up of 2 different parts you can compile 2 different
+ * object files.
+ * The following commands are provided for compiling the module using the
+ * gcc c++ compiler.
+ *
+ * @subsection DebuggingModBuildingHelpers Compiling the testing helper functions:
+ *  This command assumes that the current working directory is Library/Debugging.
+ *  With Library/ being the directory with the library's repository.
+ *  @code
+ *  g++ -c -Og -g -Wall -Wextra -pedantic -std=c++17 -o build/Debugging.o Debugging.cpp
+ *  @endcode
+ *  @note If the Library/Debugging/build/ directory does not exist you will need
+ *  to create it. Library/ is the directory with the library's repository.
+ *
+ *
+ * @subsection DebuggingModBuildingLogging Compiling the logging system:
+ *  This command assumes that the current working directory is Library/Debugging.
+ *  With Library/ being the directory with the library's repository.
+ *  @code
+ *  g++ -c -Og -g -Wall -Wextra -pedantic -std=c++17 -DDEBUG -o build/Log.o Log.cpp
+ *  @endcode
+ *  @note If the Library/Debugging/build/ directory does not exist you will need
+ *  to create it. Library/ is the directory with the library's repository.
+ *
+ *
+ * @section DebuggingModFuture Future
+ * In the future this module may get extra functionality such as more advance
+ * functions for tracking memory or things that may help with IO. Overall the
+ * already defined functions are extremely unlikely to change as of now.
+ *
+ * Feel free to contribute to the expansion of this module!
+ *
+ */
+
+
+/** @dir Debugging
+ *
+ * @brief Under this directory you will find files that belong to the
+ * @ref DebuggingMod module.
+ *
+ */
+
+/** @dir Logging
+ *
+ * @brief Under this directory you will find all of the files related to the
+ * logging system. The logging system is apart of the @ref DebuggingMod module.
+ *
+ */

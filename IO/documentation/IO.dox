@@ -1,0 +1,116 @@
+/** @defgroup IOMod IO
+ *
+ * @brief Defines an abstract interface for IO.
+ *
+ * This module defines an abstract interface that can used to IO(input output)
+ * either internally or externally. This interface comes in the form of the
+ * @ref Library::IO::Stream "Stream" structure.
+ *
+ * @section IOModPurpose Purpose
+ * The main purpose of this module is to define an abstract interface
+ * which can be used for reading and writing to all sorts of things: files, data
+ * structures, pipes, sockets, ect.
+ *
+ *
+ * @section IOModUses Uses
+ * This module all on it's own has a limited usage, it needs to be used with
+ * other modules in order to do anything useful. This is mostly due to the fact
+ * that this module's primary focus is defining an abstract interface.
+ *
+ * However this module can still be used for doing IO on the 3 standard streams:
+ * - standard input, see @ref Library::IO::g_StandardInputStream.
+ * - standard output, see @ref Library::IO::g_StandardOutputStream.
+ * - standard error, see @ref Library::IO::g_StandardErrorStream.
+ *
+ * Additionally there is one more special stream defined by this module,
+ * @ref Library::IO::g_NullStream
+ *
+ *
+ * @section IOModUsing Using
+ * Using this module requires having a valid @ref Library::IO::Stream "Stream"
+ * structure. You most commonly get a valid stream through a function paramater.
+ * You could also get a valid stream by creating it using a function in another
+ * module (the see also section has a bunch of modules that can be used for
+ * this).
+ *
+ * After you have a valid stream structure you can use its function pointers
+ * for doing IO. There is a read and write function as well as functions for
+ * checking for error states. The full details of using all of the function
+ * pointers is documented at @ref Library::IO::Stream "Stream", here a quick
+ * overview is given of all of the pointers, for futher details check each
+ * pointers' documentation.
+ *
+ * @subsection IOModExample Example
+ * In this section we'll go over a simple example of reading from the standard
+ * input stream and writing to the standard output stream.
+ *
+ * In this example we'll:
+ * -# Read 4 bytes from stdin.
+ * -# Multiply them by 2.
+ * -# Write the 4 bytes back to stdout.
+ *
+ * For this example we'll assume IO.hpp is somewhere in the include path.
+ * Here is the complete code:
+ * @code{.cpp}
+ * #include <IO.hpp>
+ *
+ * using namespace Library::IO;
+ *
+ * int main()
+ * {
+ *
+ *     Byte l_bytes[4];
+ *
+ *     //Reads the bytes, we also assume that the read fully succeeds.
+ *     g_StandardInputStream.m_ReadBytesFromThing(l_bytes, 4, g_StandardInputStream.m_Thing);
+ *
+ *     //Multiplies
+ *     for(Size i = 0; i < 4; ++i)
+ *     {
+ *         l_bytes[i] *= 2;
+ *     }
+ *
+ *     //Writes the bytes, we also assume that the write fully succeeds.
+ *     g_StandardOutputStream.m_WriteBytesToThing(l_bytes, 4, g_StandardOutputStream.m_Thing);
+ *
+ *     return 0;
+ *
+ * }
+ * @endcode
+ *
+ *
+ * @section IOModOrganization Organization
+ * Everything in this module can be found under the @ref Library::IO namespace.
+ *
+ * @subsection IOModFiles Files
+ * The IO module is only comprised up of 2 files:
+ * - IO.hpp, this file declares the abstract stream interface. Include it to use
+ * the IO module.
+ * - IO.cpp, this file implements the standard streams and the null stream. You
+ * will need to link to it if you intend to use the IO module or any of it's
+ * dependents.
+ *
+ *
+ * @section IOModDeps Dependencies
+ * This module depends on these modules:
+ * - @ref LibraryMetaMod
+ * - @ref DebuggingMod, this module is only needed if you build with the DEBUG
+ * macro defined. Otherwise there is not need to link to it, however the logging
+ * header still must be included.
+ *
+ *
+ * @section IOModBuilding Building
+ * //TODO: Add build steps
+ *
+ *
+ * @section IOModAlso Also see
+ * //TODO: Use the sa tag
+ * @ref FileIOMod (for file IO) @ref ASCIIStringMod (for reading and writing
+ * text) @ref DirIOMod (for directories), @ref QueueMod (for buffering the stream) //TODO: This might be in a different module...
+ *
+ */
+
+/** @dir Library/IO
+ * @brief Things related to input and output can be found under this directory.
+ *
+ */

@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -g -O0 -std=c++17 -DDEBUG -o MemoryTests.test ../../Meta/Meta.cpp *.cpp 

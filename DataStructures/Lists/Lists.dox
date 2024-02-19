@@ -1,0 +1,63 @@
+/** @file Lists.dox
+ * @brief Documents the @ref ListsMod module group
+ * 
+ */
+
+/** @defgroup ListsMod Lists
+ * @ingroup DataStructuresMod
+ * @brief A group of modules that are used for storing an arbitrary number of
+ * items that are scattered across memory, such that they can be easily acessed,
+ * added, removed and reordered.
+ * 
+ * @details To achieve this modules in this group define the list data
+ * structure. //TODO: How does the list work
+ *  
+ * 
+ * @section ListsModPurpose Purpose
+ * The purpose of all of the modules in this group is to define a list data
+ * structure and to define function to manipulate that structure.
+ * 
+ * 
+ * @section ListModUses Uses
+ * You can use the modules in this group to create a list and perform various
+ * operations on said list.
+ * 
+ * Here is a quick rundown on all of the operations you can perfrom on a list:
+ * - Get and set items using an index. Items in a list are stored in a certian
+ * order, from first to last, as such index 0 is the first item in a list, index
+ * 1 is the second item in a list and so forth.
+ * - Add items. Items may be added at:
+ *      - the start of a list,
+ *      - the end of a list,
+ *      - after some index in a list.
+ * - Remove items. Items may be removed at:
+ *      - the start of a list,
+ *      - the end of a list,
+ *      - after some index in a list.
+ * - List internal operations, you can use these operations to perform low level
+ * things to a list.
+ * 
+ * 
+ * @section ListsModOrganization Organization
+ * The modules in this group are split into 2 sub groups that differ for each
+ * other slightly in some implementation details:
+ * - Singly linked lists take up less memory, but are slower in some operations.
+ * - Doubly linked lists take up more memory, but are faster in some operations.
+ * 
+ * Additionally each of these sub groups have their own splits and variations.
+ * 
+ * The 2 groups also have a one way relationship, doubly linked lists can be
+ * converted down to singly linked lists. This is because doubly linked lists
+ * directly upgrade singly linked lists. This inturn also makes doubly linked
+ * lists dependant on singly linked lists, for the sake of reusing code.
+ * 
+ * 
+ * @section ListsModBuilding Building
+ * //TODO: Only feasible with SBS
+ * 
+ */
+
+/** @dir Lists/
+ * @brief Holds the @ref ListsMod "lists module group".
+ * 
+ */
